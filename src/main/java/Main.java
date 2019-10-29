@@ -1,23 +1,16 @@
-import core.Line;
-import core.Station;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-import static java.rmi.server.LogStream.log;
+
+
 
 public class Main
 {
@@ -29,14 +22,26 @@ public class Main
     {
 
 
+        List<String> stations = new ArrayList<>();
+        List<String> lines = new ArrayList<>();
+        List<String> connections = new ArrayList<>();
+
+
         try {
             String htmlFile = parseFile(dataFile);
             Document doc = Jsoup.parse(htmlFile);
-            Elements titles = doc.select("table > tbody > tr > td:has(span) > span");
+            //Document doc = Jsoup.connect("https://ru.wikipedia.org/wiki/Список_станций_Московского_метрополитена").maxBodySize(0).get();
+            Elements titles = doc.select("table[class][style]:contains(Список может быть отсортирован по названиям станций в алфавитном порядке, " +
+                    "а также по их характеристикам. Интерактивную карту можно вызвать нажатием на ссылку в графе «Координаты».) > tbody > tr > td[data-sort-value][style]," +
+                    " td[data-sort-value][style] + td:has(span) > span");
 
             for (Element el : titles) {
 
+
+
                 System.out.println(el.getElementsByAttribute("title").attr("title"));
+                System.out.println(el.getElementsByAttribute("data-sort-value").attr("data-sort-value"));
+
             }
         } catch (Exception ex)
         {
