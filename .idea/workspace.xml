@@ -2,14 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89d1682f-dfee-46e9-abb4-dab424ac60e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/map.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/StationsTypeAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/map.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_8_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jsoup_1_12_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
     </list>
@@ -27,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="42" column="86" selection-start-line="42" selection-start-column="86" selection-end-line="42" selection-end-column="86" />
+            <state relative-caret-position="240">
+              <caret line="38" column="91" selection-start-line="38" selection-start-column="91" selection-end-line="38" selection-end-column="91" />
             </state>
           </provider>
         </entry>
@@ -255,7 +247,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-1928" y="-3" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
@@ -366,8 +358,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="42" column="86" selection-start-line="42" selection-start-column="86" selection-end-line="42" selection-end-column="86" />
+        <state relative-caret-position="240">
+          <caret line="38" column="91" selection-start-line="38" selection-start-column="91" selection-end-line="38" selection-end-column="91" />
         </state>
       </provider>
     </entry>

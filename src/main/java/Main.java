@@ -32,15 +32,11 @@ public class Main
             Document doc = Jsoup.parse(htmlFile);
             //Document doc = Jsoup.connect("https://ru.wikipedia.org/wiki/Список_станций_Московского_метрополитена").maxBodySize(0).get();
             Elements titles = doc.select("table[class][style]:contains(Список может быть отсортирован по названиям станций в алфавитном порядке, " +
-                    "а также по их характеристикам. Интерактивную карту можно вызвать нажатием на ссылку в графе «Координаты».) > tbody > tr > td[data-sort-value][style]," +
-                    " td[data-sort-value][style] + td:has(span) > span");
+                    "а также по их характеристикам. Интерактивную карту можно вызвать нажатием на ссылку в графе «Координаты».) > tbody > tr > td[data-sort-value][style], td[data-sort-value][style] ~ td:has(span) > span");
 
             for (Element el : titles) {
 
-
-
-                System.out.println(el.getElementsByAttribute("title").attr("title"));
-                System.out.println(el.getElementsByAttribute("data-sort-value").attr("data-sort-value"));
+                System.out.println(el.getElementsByAttribute("title").attr("title") + " " + el.getElementsByAttribute("data-sort-value").attr("data-sort-value"));
 
             }
         } catch (Exception ex)
