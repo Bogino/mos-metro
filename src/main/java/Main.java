@@ -1,4 +1,7 @@
 
+import com.google.gson.internal.$Gson$Preconditions;
+import core.Line;
+import core.Station;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -7,9 +10,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
-
+import java.util.Set;
 
 
 public class Main
@@ -20,11 +23,8 @@ public class Main
 
     public static void main(String[] args)
     {
-
-
-        List<String> stations = new ArrayList<>();
-        List<String> lines = new ArrayList<>();
-        List<String> connections = new ArrayList<>();
+        ArrayList<Station> stations = new ArrayList<>();
+        Set<Line> lines = new HashSet<>();
 
 
         try {
@@ -32,45 +32,42 @@ public class Main
             Document doc = Jsoup.parse(htmlFile);
             //Document doc = Jsoup.connect("https://ru.wikipedia.org/wiki/Список_станций_Московского_метрополитена").maxBodySize(0).get();
             Elements titles = doc.select("table[class][style]:contains(Список может быть отсортирован по названиям станций в алфавитном порядке, " +
-                    "а также по их характеристикам. Интерактивную карту можно вызвать нажатием на ссылку в графе «Координаты».) > tbody > tr > td[data-sort-value][style], td[data-sort-value][style] ~ td:has(span) > span");
+                    "а также по их характеристикам. Интерактивную карту можно вызвать нажатием на ссылку в графе «Координаты».) > tbody > tr > td[data-sort-value][style], td[data-sort-value][style] ~ td:has(span) > span > a");
 
-            for (Element el : titles) {
 
-                System.out.println(el.getElementsByAttribute("title").attr("title") + " " + el.getElementsByAttribute("data-sort-value").attr("data-sort-value"));
 
+            for (Element el : titles)
+            {
+                String title = el.getElementsByAttribute("title").attr("title") + " " + el.
+                        getElementsByAttribute("data-sort-value").attr("data-sort-value");
+
+               // System.out.println(title);
+                if (title.contains("линия"))
+                {
+                    String[] fragments = title.split("\\s+");
+                    if (fragments.length == 3)
+                    {
+                       // System.out.println(title);
+
+                        Line line = new Line(fragments[2].replaceAll("[^0-9]+",""),fragments[0]);
+                        if (!lines.contains(line))
+                        {
+                            lines.add(line);
+                            System.out.println(line.getName()+ " " + line.getNumber());
+                        }
+                    }
+                }
             }
         } catch (Exception ex)
         {
             ex.getMessage();
         }
+        //lines.stream()
+          //      .map(line -> line.getName())
+            //    .forEach(System.out::println);
+        System.out.println(lines.size());
 
 
-    }
-
-
-
-
-
-    private static void createStationIndex()
-    {
-//        stationIndex = new StationIndex();
-//        try
-//        {
-//            JSONParser parser = new JSONParser();
-//            JSONObject jsonData = (JSONObject) parser.parse(getJsonFile());
-//
-//            JSONArray linesArray = (JSONArray) jsonData.get("lines");
-//            parseLines(linesArray);
-//
-//            JSONObject stationsObject = (JSONObject) jsonData.get("stations");
-//            parseStations(stationsObject);
-//
-//            JSONArray connectionsArray = (JSONArray) jsonData.get("connections");
-//            parseConnections(connectionsArray);
-//        }
-//        catch(Exception ex) {
-//            ex.printStackTrace();
-//        }
     }
 
 
