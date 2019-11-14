@@ -24,11 +24,13 @@ public class Main
     public static void main(String[] args)
     {
         LineSet lineSet = Subway.createLines();
+        Type linesSetType = new TypeToken<Set<Line>>(){}.getType();
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
+                .registerTypeAdapter(linesSetType, new LinesTypeAdapter())
                 .create();
         String json = gson.toJson(lineSet);
-        System.out.println(json);
+        //System.out.println(json);
 
     }
 
