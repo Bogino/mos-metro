@@ -9,6 +9,7 @@ public class Line implements Comparable<Line>
     private String name;
     private List<Station> stations;
 
+
     public Line(String number, String name)
     {
         this.number = number;
@@ -39,13 +40,7 @@ public class Line implements Comparable<Line>
     @Override
     public int compareTo(Line line)
     {
-        int numberComparison = Integer.compare(Integer.parseInt(number), Integer.parseInt(line.getNumber()));
-        int nameComparison = name.compareToIgnoreCase(line.name);
-        if(numberComparison != 0 &&  nameComparison != 0)
-        {
-            return -1;
-        }
-        return 0;
+        return Integer.compare(Integer.parseInt(number), Integer.parseInt(line.number));
     }
 
     @Override

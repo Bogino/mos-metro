@@ -8,6 +8,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,6 +17,7 @@ public class Subway {
 
     private static String dataFile = "data/webpage/index.html";
     private static HashSet<Line> lines = new HashSet<>();
+    private static HashSet<Station> stations = new HashSet<>();
     private static Line line;
 
     public static LineSet createLines()
@@ -32,26 +34,17 @@ public class Subway {
 //                    "а также по их характеристикам. Интерактивную карту можно вызвать нажатием на ссылку в графе «Координаты».) > tbody > tr > td[data-sort-value][style], td[data-sort-value][style] ~ td:has(span) > span > a");
             Elements titles = doc.select("table[class][style]:contains(Список может быть отсортирован по названиям станций в алфавитном порядке, " +
                     "а также по их характеристикам. Интерактивную карту можно вызвать нажатием на ссылку в графе «Координаты».) > tbody > tr > td:has(span), td[data-sort-value][style] + td:has(a)");
-
-//            for (Element el : komunarka)
-//            {
-//             String kom = el.getElementsByAttribute("title").attr("title") + " " + el.
-//                    getElementsByAttribute("data-sort-value").attr("data-sort-value");;
-//                System.out.println(kom);
-//            }
-
             for (Element el : titles)
             {
                 String title = el.getElementsByAttribute("title").attr("title") + " " + el.
                         getElementsByAttribute("data-sort-value").attr("data-sort-value");
 
-                //System.out.println(title);
                 if (title.contains("линия"))
                 {
                     String[] fragments = title.split("\\s+");
                     if (fragments.length == 3)
                     {
-                        line = new Line(fragments[INDEX_LINE_NUMBER].replaceAll("[^0-9]+",""),fragments[INDEX_LINE_NAME]);
+                        line = new Line(fragments[INDEX_LINE_NUMBER].replaceAll("[^0-9]+","").trim(),fragments[INDEX_LINE_NAME].trim());
                         if (!lines.contains(line))
                         {
                             lines.add(line);
@@ -64,10 +57,25 @@ public class Subway {
                     String name = title.trim().substring(0,title.indexOf("(станция")).trim();
                     //System.out.println(name);
                     Station station = new Station(name, line);
-                    System.out.println(station.getName() + " " + station.getLine().getName());
+                    stations.add(station);
+                    //System.out.println(station.getName() + " " + station.getLine().getName());
 
                 }
             }
+            for (Line line : lines)
+            {
+                for (Station station : stations)
+                {
+                    if (line.equals(station.getLine()))
+                    {
+                        line.addStation(station);
+                    }
+                    continue;
+                }
+            }
+
+            lines.stream().forEach(line1 -> System.out.println(line1.getName() +" " + line1.getNumber() + "\n" + "\t" + line1.getStations()));
+
             lineSet.addLines(lines);
 
         } catch (Exception ex)
