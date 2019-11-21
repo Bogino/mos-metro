@@ -7,14 +7,14 @@ public class Line implements Comparable<Line>
 {
     private String number;
     private String name;
-    private List<Station> stations;
+    private List<String> nameOfStations;
 
 
     public Line(String number, String name)
     {
         this.number = number;
         this.name = name;
-        stations = new ArrayList<>();
+        nameOfStations = new ArrayList<>();
     }
 
     public String getNumber()
@@ -27,20 +27,26 @@ public class Line implements Comparable<Line>
         return name;
     }
 
-    public void addStation(Station station)
+    public void addNameStation(String name)
     {
-        stations.add(station);
+        nameOfStations.add(name);
     }
 
-    public List<Station> getStations()
+    public List<String> getStations()
     {
-        return stations;
+        return nameOfStations;
     }
 
     @Override
     public int compareTo(Line line)
     {
-        return Integer.compare(Integer.parseInt(number), Integer.parseInt(line.number));
+        Integer nameComparison = name.compareToIgnoreCase(line.name);
+        Integer numberComparison = Integer.compare(Integer.parseInt(number), Integer.parseInt(line.number));
+        if (numberComparison != 0 && nameComparison != 0)
+        {
+            return nameComparison;
+        }
+        return 0;
     }
 
     @Override

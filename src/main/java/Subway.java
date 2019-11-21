@@ -62,19 +62,17 @@ public class Subway {
 
                 }
             }
-            for (Line line : lines)
-            {
-                for (Station station : stations)
-                {
-                    if (line.equals(station.getLine()))
-                    {
-                        line.addStation(station);
-                    }
-                    continue;
-                }
-            }
-
-            lines.stream().forEach(line1 -> System.out.println(line1.getName() +" " + line1.getNumber() + "\n" + "\t" + line1.getStations()));
+//            for (Line line : lines)
+//            {
+//                for (Station station : stations)
+//                {
+//                    if (line.equals(station.getLine()))
+//                    {
+//                        line.addStation(station);
+//                    }
+//                    continue;
+//                }
+//            }
 
             lineSet.addLines(lines);
 

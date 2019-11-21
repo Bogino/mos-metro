@@ -5,20 +5,20 @@ import core.Line;
 import core.Station;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-public class StationsTypeAdapter extends TypeAdapter<Station> {
-
-
+public class StationsTypeAdapter extends TypeAdapter<List<Station>> {
     @Override
-    public void write(JsonWriter out, Station station) throws IOException {
+    public void write(JsonWriter out, List<Station> stations) throws IOException {
 
+        
 
     }
 
     @Override
-    public Station read(JsonReader in) throws IOException {
+    public List<Station> read(JsonReader jsonReader) throws IOException {
         return null;
     }
-
-
 }
