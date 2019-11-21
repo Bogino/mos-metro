@@ -6,7 +6,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.SecureRandom;
@@ -106,6 +108,14 @@ public class Main
                         .toJson(jsonResponse);
 
         System.out.println(json);
+        try {
+            PrintWriter writer = new PrintWriter("data/mosmetro.json");
+            writer.write(json);
+            writer.flush();
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
