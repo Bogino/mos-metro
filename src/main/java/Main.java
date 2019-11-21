@@ -99,9 +99,8 @@ public class Main
         jsonResponse.setLines(lines);
 
         //переводим объект в JSON (в красивом pretty виде)
-        String json =
-                new GsonBuilder()
-                        .setPrettyPrinting()
+        String json = new GsonBuilder()
+                        .setPrettyPrinting().registerTypeAdapter(Line.class, new LineSerializer())
                         .disableHtmlEscaping()
                         .create()
                         .toJson(jsonResponse);
